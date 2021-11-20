@@ -8,7 +8,7 @@ const RestaurantItem = ({info}) => {
     <View style={styles.container}>
       <TouchableOpacity>
         <Image
-          source={{ uri: info.image }}
+          source={{ uri: info.image_url }}
           style={styles.image}
           resizeMode='cover'
         />
@@ -18,7 +18,7 @@ const RestaurantItem = ({info}) => {
         <View style={styles.infoContainer}>
           <View>
             <Text style={{fontWeight: 'bold', fontSize: RFValue(14)}}>{info.name}</Text>
-            <Text style={{color: '#adb5bd'}}>{info.time}</Text>
+            <Text style={{color: '#adb5bd'}}>{info.review_count} reviews</Text>
           </View>
           <View style={styles.reviewContainer}>
             <Text>{info.rating}</Text>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import CategoriesList from '../../Components/CategoriesList'
@@ -6,42 +6,33 @@ import HeaderTabs from '../../Components/HeaderTabs'
 import RestaurantItem from '../../Components/RestaurantItem'
 import SearchBar from '../../Components/SearchBar'
 
-const HomeScreen = () => {
+const YELP_API_KEY = 'GwtKpr4po9KWtW9pNbTc4Sx6k90AkM_85caccoH5G-nsAmnHgor6sMjRWpl0r06jjvF_vuTGbDS0kgjRq_S43ECKAscyVzCS7z0wjad9M3t8_7AQwq3KAvM0cCGZYXYx'
 
-  const restaurants = [
-    {
-      id: 123,
-      image: 'https://cdn.pixabay.com/photo/2016/11/18/15/31/cooking-1835369_1280.jpg',
-      name: 'Pf-Changs',
-      time: '35-45 min',
-      price: '$$',
-      review: 762,
-      rating: 4.7,
-    },
-    {
-      id: 124,
-      image: 'https://cdn.pixabay.com/photo/2021/07/19/16/04/pizza-6478478__480.jpg',
-      name: 'Pizzeria Victor',
-      time: '25-30 min',
-      price: '$$',
-      review: 438,
-      rating: 4.4,
-    },
-    {
-      id: 125,
-      image: 'https://cdn.pixabay.com/photo/2018/08/03/08/33/food-3581341__480.jpg',
-      name: 'Sushi Club',
-      time: '30-40 min',
-      price: '$$',
-      review: 292,
-      rating: 4.5,
-    },
-  ]
+const HomeScreen = () => {
+  const [restaurantsData, setRestaurantsData] = useState([])
 
   const items = [
     {key: 1, type: 'CategoriesList'},
-    {key: 2, type: 'RestaurantItem', payload: restaurants},
+    {key: 2, type: 'RestaurantItem', payload: restaurantsData},
   ]
+
+  useEffect(() => {
+    getRestaurantsFromYelp()
+  }, [])
+
+  const getRestaurantsFromYelp = () => {
+    const yelpUrl = 'https://api.yelp.com/v3/businesses/search?term=restaurant&location=ArgentinaBuenoAires'
+  
+    const apiOptions = {
+      headers: {
+        Authorization: `Bearer ${YELP_API_KEY}`,
+      },
+    }
+
+    return fetch(yelpUrl, apiOptions)
+    .then(res => res.json())
+    .then(json => setRestaurantsData(json.businesses))
+  } 
 
   const _renderItem = (item) => {
     if (item.type === 'CategoriesList') {
@@ -61,6 +52,8 @@ const HomeScreen = () => {
       )
     }
   }
+
+  console.log(restaurantsData)
 
   return (
     <View style={styles.container}>
