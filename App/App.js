@@ -8,11 +8,11 @@ import BottomTabNav from './Navigation/TabNavigator/BottomTabNav';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <NavigationContainer>
         <BottomTabNav />
       </NavigationContainer>
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -20,6 +20,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: RFValue(30),
   },
 });

@@ -2,11 +2,16 @@ import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { FontAwesome } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
 const RestaurantItem = ({info}) => {
+  const navigation = useNavigation()
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('RestaurantDetail', {data: info})}
+      >
         <Image
           source={{ uri: info.image_url }}
           style={styles.image}
@@ -49,8 +54,11 @@ const styles = StyleSheet.create({
   },
   reviewContainer: {
     backgroundColor: '#eee',
-    padding: RFValue(8),
+    height: RFValue(32),
+    width: RFValue(32),
     borderRadius: RFValue(50),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   heartButton: {
     position: 'absolute',

@@ -23,8 +23,8 @@ const BottomTabNav = () => {
         tabBarActiveBackgroundColor: 'transparent',
         tabBarStyle: {
           backgroundColor: '#dee2e6',
-          borderRadius: RFValue(10),
-          margin: RFValue(10),
+          borderTopRightRadius: RFValue(10),
+          borderTopLeftRadius: RFValue(10),
           position: 'absolute',
         },
         tabBarHideOnKeyboard: true,

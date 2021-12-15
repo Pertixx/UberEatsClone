@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import HomeScreen from '../../Screens/Home'
+import RestaurantDetail from '../../Screens/RestaurantDetail'
 
 const Stack = createStackNavigator()
 
@@ -13,6 +14,7 @@ const HomeStack = () => {
       }}
     >
       <Stack.Screen name='HomeStack' component={HomeScreen} />
+      <Stack.Screen name='RestaurantDetail' component={RestaurantDetail} />
     </Stack.Navigator>
   )
 }

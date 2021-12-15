@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import CategoriesList from '../../Components/CategoriesList'
 import HeaderTabs from '../../Components/HeaderTabs'
 import RestaurantItem from '../../Components/RestaurantItem'
@@ -56,7 +57,7 @@ const HomeScreen = () => {
   console.log(restaurantsData)
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}>
         <HeaderTabs/>
         <SearchBar/>
@@ -67,7 +68,7 @@ const HomeScreen = () => {
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => _renderItem(item)}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -76,7 +77,7 @@ export default HomeScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
   },
   topContainer: {
     backgroundColor: '#fff',
